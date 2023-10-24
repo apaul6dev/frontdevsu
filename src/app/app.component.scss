@@ -9,7 +9,7 @@ header {
     color: black;
     padding: 10px;
     text-align: left;
-    border-bottom: solid;
+    border-bottom:inset;
 }
 
 .content {
@@ -21,10 +21,10 @@ header {
     background-color: white;
     color: black;
     width: 200px;
-    padding: 0px;
-    border-right: solid;
-    border-left: solid;
-    border-bottom: solid;
+    padding: 5px;
+    border-right: inset;
+    border-left: inset;
+    border-bottom: inset;
 
     ul {
         list-style: none;
@@ -32,7 +32,7 @@ header {
 
         li {
             margin-bottom: 10px;
-            border-bottom: solid;
+            border-bottom: inset;
 
             a {
                 color: black;

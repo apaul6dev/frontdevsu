@@ -8,9 +8,12 @@ import { HOST } from "../shared/constants";
 })
 export class ClientesService {
 
-    url = `${HOST}`;
+    url = `${HOST}/clientes`;
 
     constructor(private http: HttpClient) { }
 
+    getClienteById(id: number) {
+        return this.http.get<any>(`${this.url}/${id}`);
+      }
 
 }
