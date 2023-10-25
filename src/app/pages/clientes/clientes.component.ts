@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ClientesService } from './clientes.service';
 import { Router } from '@angular/router';
 import { Cliente } from '../model/cliente';
+import { MensajesService } from '../mensajes/mensajes.service';
 
 @Component({
     selector: 'app-clientes',
@@ -14,12 +15,13 @@ export class ClientesComponent implements OnInit {
     datosTodo: Cliente[] = [];
     terminoBusqueda: string = '';
 
-    constructor(private clientesService: ClientesService, private router: Router) { }
+    constructor(private clientesService: ClientesService, private router: Router, private mensajesService: MensajesService) { }
 
     ngOnInit(): void {
         this.clientesService.datosCambio.subscribe(rs => {
             this.datos = rs;
             this.datosTodo = rs;
+            this.mensajesService.tipoMensaje.next('exito');
         });
 
         this.clientesService.listar().subscribe(rs => {

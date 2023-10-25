@@ -3,6 +3,7 @@ import { ActivatedRoute, Params } from '@angular/router';
 import { FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 import { ClientesService } from '../clientes.service';
 import { Cliente } from '../../model/cliente';
+import { MensajesService } from '../../mensajes/mensajes.service';
 
 @Component({
     selector: 'app-registrar-cliente',
@@ -10,12 +11,18 @@ import { Cliente } from '../../model/cliente';
     styleUrls: ['./registrar-cliente.component.scss']
 })
 export class RegistrarClienteComponent implements OnInit {
+
     registroForm: FormGroup | any;
-    estadoGuardado = false;
+    estadoOperacion = "pendiente";
     id = 0;
     accion = '';
 
-    constructor(private clientesService: ClientesService, private formBuilder: FormBuilder, private route: ActivatedRoute) {
+    tiposGenero: string[] = ['Masculino', 'Femenino'];
+    tiposEstado: string[] = ['True', 'False'];
+
+    constructor(private clientesService: ClientesService, private formBuilder: FormBuilder, private route: ActivatedRoute,
+        private mensajesService: MensajesService
+        ) {
         this.registroForm = this.formBuilder.group({
             contrasena: new FormControl(''),
             identificacion: new FormControl(''),
@@ -71,7 +78,7 @@ export class RegistrarClienteComponent implements OnInit {
 
             serviceMethod.subscribe(() => {
                 console.log(`${action}: `, formData);
-                this.estadoGuardado = true;
+                this.mensajesService.tipoMensaje.next('exito');
                 this.cleanForm();
             });
         }

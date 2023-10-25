@@ -15,7 +15,7 @@ export class CuentasService {
 
     constructor(private http: HttpClient) { }
 
-    getClienteById(id: number) {
+    getCuentaById(id: number) {
         return this.http.get<Cuenta>(`${this.url}/${id}`);
     }
 

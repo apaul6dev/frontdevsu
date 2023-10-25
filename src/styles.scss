@@ -21,21 +21,6 @@
   background-color: #0056b3;
 }
 
-.success-message {
-  background-color: #4CAF50;
-  /* Color de fondo verde */
-  color: #fff;
-  /* Texto en color blanco */
-  padding: 10px;
-  border-radius: 5px;
-  /* Bordes redondeados */
-  font-size: 16px;
-  text-align: center;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-  /* Sombra ligera */
-}
-
-
 
 //estilos formulario
 .registro-container {
@@ -125,4 +110,19 @@ table {
   tr:nth-child(even) {
     background-color: #f2f2f2;
   }
+}
+
+
+/// combo 
+
+select {
+  padding: 5px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  outline: none;
+}
+
+select:hover {
+  border-color: #555;
 }
