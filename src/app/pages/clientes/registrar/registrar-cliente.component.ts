@@ -77,7 +77,7 @@ export class RegistrarClienteComponent implements OnInit {
 
             serviceMethod.subscribe(() => {
                 console.log(`${action}: `, formData);
-                this.mensajesService.tipoMensaje.next('exito');
+                this.mensajesService.tipoMensaje.next({tipo:'exito', mensaje:'Cliente guardado correctamente!!'});
                 this.cleanForm();
             });
         }

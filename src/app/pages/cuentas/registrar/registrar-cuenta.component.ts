@@ -85,11 +85,11 @@ export class RegistrarCuentaComponent implements OnInit {
 
             serviceMethod.subscribe(() => {
                 console.log(`${action}: `, formData);
-                this.mensajesService.tipoMensaje.next('exito');
+                this.mensajesService.tipoMensaje.next({tipo:'exito', mensaje:'Cuenta guardado correctamente!!'});
                 this.cleanForm();
             });
         } else {
-            this.mensajesService.tipoMensaje.next('error');
+            this.mensajesService.tipoMensaje.next({tipo:'error', mensaje:'Datos incompletos!!'});
         }
     }
 

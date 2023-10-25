@@ -24,7 +24,7 @@ export class ServerErrorsInterceptor implements HttpInterceptor {
                 }
             })).pipe(catchError((err) => {
                 console.error(err);
-                this.mensajesService.tipoMensaje.next('error');
+                this.mensajesService.tipoMensaje.next({tipo:'error', mensaje:'Error al consultar los datos del servidor!!'});
                 return EMPTY;
             }));
     }
