@@ -14,6 +14,16 @@ export class ClientesService {
 
     getClienteById(id: number) {
         return this.http.get<any>(`${this.url}/${id}`);
-      }
+    }
+
+    getAll() {
+        return this.http.get<any>(`${this.url}`);
+    }
+
+    create(cliente:any) {
+        return this.http.post(this.url, cliente);
+    }
+
+   
 
 }

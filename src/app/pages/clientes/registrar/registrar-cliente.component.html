@@ -1,0 +1,53 @@
+
+<div *ngIf="estadoGuardado" class="success-message">
+  <p>¡Éxito! Tu acción se ha completado con éxito.</p>
+</div>
+<div class="registro-container">
+  <h2>Registro de Clientes</h2>
+  <form [formGroup]="registroForm" (ngSubmit)="submitRegistro()">
+    <div class="form-group">
+      <label for="nombre">Nombre:</label>
+      <input type="text" id="nombre" formControlName="nombre">
+      <span class="error-message" *ngIf="registroForm.controls.nombre.errors?.required">Valor obligatorio</span>
+    </div>
+    <div class="form-group">
+      <label for="identificacion">Identificación:</label>
+      <input type="text" id="identificacion" formControlName="identificacion">
+      <span class="error-message" *ngIf="registroForm.controls.identificacion.errors?.required">Valor obligatorio</span>
+    </div>
+    <div class="form-group">
+      <label for="direccion">Dirección:</label>
+      <input type="text" id="direccion" formControlName="direccion">
+      <span class="error-message" *ngIf="registroForm.controls.direccion.errors?.required">Valor obligatorio</span>
+    </div>
+
+    <div class="form-group">
+      <label for="contrasena">Contraseña:</label>
+      <input type="password" id="contrasena" formControlName="contrasena">
+      <span class="error-message" *ngIf="registroForm.controls.contrasena.errors?.required">Valor obligatorio</span>
+    </div>
+    <div class="form-group">
+      <label for="edad">Edad:</label>
+      <input type="number" id="edad" formControlName="edad">
+      <span class="error-message" *ngIf="registroForm.controls.edad.errors?.required">Valor obligatorio</span>
+    </div>
+    <div class="form-group">
+      <label for="estado">Estado:</label>
+      <input type="text" id="estado" formControlName="estado">
+      <span class="error-message" *ngIf="registroForm.controls.estado.errors?.required">Valor obligatorio</span>
+    </div>
+    <div class="form-group">
+      <label for="genero">Género:</label>
+      <input type="text" id="genero" formControlName="genero">
+      <span class="error-message" *ngIf="registroForm.controls.genero.errors?.required">Valor obligatorio</span>
+    </div>
+    <div class="form-group">
+      <label for="telefono">Teléfono:</label>
+      <input type="tel" id="telefono" formControlName="telefono">
+      <span class="error-message" *ngIf="registroForm.controls.telefono.errors?.required">Valor obligatorio</span>
+    </div>
+    <button type="submit">Registrar</button>
+    <a class="blue-button" routerLink="/clientes">Atrás</a>
+  </form>
+
+</div>

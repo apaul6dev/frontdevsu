@@ -1,1 +1,33 @@
 /* You can add global styles to this file, and also import other style files */
+.error-message {
+    color: red; 
+    font-size: 12px;
+  }
+
+.blue-button {
+    background-color: #007bff; 
+    color: #fff; 
+    padding: 10px 20px; 
+    border: none; 
+    border-radius: 5px; 
+    cursor: pointer;
+    font-size: 14px; 
+    text-align: center;
+    text-decoration: none; 
+    display: inline-block;
+  }
+
+  .blue-button:hover {
+    background-color: #0056b3; 
+  }
+
+  .success-message {
+    background-color: #4CAF50; /* Color de fondo verde */
+    color: #fff; /* Texto en color blanco */
+    padding: 10px;
+    border-radius: 5px; /* Bordes redondeados */
+    font-size: 16px;
+    text-align: center;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra ligera */
+  }
+  

@@ -8,15 +8,19 @@ import { CuentasComponent } from './pages/cuentas/cuentas.component';
 import { MovimientosComponent } from './pages/movimientos/movimientos.component';
 import { ReportesComponent } from './pages/reportes/reportes.component';
 import { HttpClientModule } from '@angular/common/http';
+import { RegistrarClienteComponent } from './pages/clientes/registrar/registrar-cliente.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
-    AppComponent, ClientesComponent, CuentasComponent, MovimientosComponent, ReportesComponent
+    AppComponent, ClientesComponent, CuentasComponent, MovimientosComponent, ReportesComponent, RegistrarClienteComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,1 +1,42 @@
-<div>Clientes</div>
+<div class="tabla-container">
+    <header>
+        <h2>Clientes</h2>
+    </header>
+
+    <div class="search-bar">
+
+        <input type="text" [(ngModel)]="terminoBusqueda" placeholder="Buscar por Nombre" (input)="buscarDatos()">
+
+        <a class="yellow-button" routerLink="/crearCliente">Nuevo</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>ID Persona</th>
+                <th>Nombre</th>
+                <th>Identificación</th>
+                <!--th>Contraseña</th-->
+                <th>Dirección</th>
+                <th>Edad</th>
+                <th>Estado</th>
+                <th>Género</th>
+                <th>Teléfono</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let dato of datos">
+                <td>{{ dato.idPersona }}</td>
+                <!--td>{{ dato.contrasena }}</td-->
+                <td>{{ dato.nombre }}</td>
+                <td>{{ dato.identificacion }}</td>
+                <td>{{ dato.direccion }}</td>
+                <td>{{ dato.edad }}</td>
+                <td>{{ dato.estado }}</td>
+                <td>{{ dato.genero }}</td>
+                <td>{{ dato.telefono }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
