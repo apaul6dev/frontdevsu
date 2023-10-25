@@ -1,7 +1,9 @@
 <div *ngIf="exito" class="success-message">
+    <button (click)="cerrar()" class="transparent-button">X</button>
     <p>{{mensaje.mensaje}}</p>
 </div>
 
 <div *ngIf="error" class="error-message">
+    <button (click)="cerrar()" class="transparent-button">X</button>
     <p>{{mensaje.mensaje}}</p>
 </div>

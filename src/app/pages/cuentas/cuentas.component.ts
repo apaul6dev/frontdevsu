@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CuentasService } from './cuentas.service';
 import { Cuenta } from '../model/cuenta';
+import { MensajesService } from '../mensajes/mensajes.service';
 
 @Component({
   selector: 'app-cuentas',
@@ -14,7 +15,7 @@ export class CuentasComponent implements OnInit {
   datosTodo: Cuenta[] = [];
   terminoBusqueda: string = '';
 
-  constructor(private cuentasService: CuentasService, private router: Router) {
+  constructor(private cuentasService: CuentasService, private router: Router, private mensajesService: MensajesService) {
 
   }
 
@@ -35,6 +36,7 @@ export class CuentasComponent implements OnInit {
     this.cuentasService.eliminar(idCliente).subscribe(data => {
       this.cuentasService.listar().subscribe(data2 => {
         this.cuentasService.datosCambio.next(data2);
+        this.mensajesService.tipoMensaje.next({tipo:'exito', mensaje:'Cuenta eliminada correctamente!!'});
       });
     });
   }

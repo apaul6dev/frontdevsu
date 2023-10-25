@@ -1,27 +1,38 @@
-.success-message {
-    background-color: #4CAF50;
-    /* Color de fondo verde */
-    color: #fff;
-    /* Texto en color blanco */
-    padding: 5px;
-    border-radius: 5px;
-    /* Bordes redondeados */
-    font-size: 16px;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    /* Sombra ligera */
+/* Estilo para los contenedores con mensaje */
+ .success-message {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #117e00; /* Color de fondo opcional */
+    color: #f0f0f0;
+    padding: 10px;
+    border: 1px solid #ddd; /* Borde opcional */
+    margin-bottom: 10px; /* Espacio entre mensajes */
   }
 
   .error-message {
-    background-color: #ff0000;
-    /* Color de fondo verde */
-    color: #fff;
-    /* Texto en color blanco */
-    padding: 5px;
-    border-radius: 5px;
-    /* Bordes redondeados */
-    font-size: 16px;
-    text-align: center;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    /* Sombra ligera */
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(247, 73, 73); /* Color de fondo opcional */
+    color: #f0f0f0;
+    padding: 10px;
+    border: 1px solid #ddd; /* Borde opcional */
+    margin-bottom: 10px; /* Espacio entre mensajes */
   }
+  
+  /* Estilo para el mensaje */
+  .success-message p, .error-message p {
+    flex: 1; /* El mensaje ocupa el espacio restante */
+    margin: 0; /* Elimina el margen del párrafo */
+    font-size: 16px;
+  }
+  
+  /* Estilo para el botón */
+  .transparent-button {
+    background-color: transparent;
+    border: none;
+    cursor: pointer;
+    font-size: 14px;
+  }
+  

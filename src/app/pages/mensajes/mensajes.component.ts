@@ -27,13 +27,17 @@ export class MensajesComponent implements OnInit {
                 this.exito = false;
                 this.error = false;
             }
-            /*
             setTimeout(() => {
                 this.exito = false;
                 this.error = false;
-            }, 3000); */
+            }, 3000); 
         });
 
+    }
+
+    cerrar(){
+        this.exito = false;
+                this.error = false;
     }
 
 }

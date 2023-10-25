@@ -54,6 +54,7 @@ export class ClientesComponent implements OnInit {
         this.clientesService.eliminar(idCliente).subscribe(data => {
             this.clientesService.listar().subscribe(data2 => {
                 this.clientesService.datosCambio.next(data2);
+                this.mensajesService.tipoMensaje.next({tipo:'exito', mensaje:'Cliente eliminado correctamente!!'});
             });
         });
     }

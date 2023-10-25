@@ -23,14 +23,15 @@ export class RegistrarClienteComponent implements OnInit {
     constructor(private clientesService: ClientesService, private formBuilder: FormBuilder, private route: ActivatedRoute,
         private mensajesService: MensajesService) {
         this.registroForm = this.formBuilder.group({
-            contrasena: new FormControl(''),
-            identificacion: new FormControl(''),
-            nombre: new FormControl(''),
-            direccion: new FormControl(''),
-            edad: new FormControl(''),
-            estado: new FormControl(''),
-            genero: new FormControl(''),
-            telefono: new FormControl('')
+            idPersona: new FormControl(null),
+            contrasena: new FormControl(null),
+            identificacion: new FormControl(null),
+            nombre: new FormControl(null),
+            direccion: new FormControl(null),
+            edad: new FormControl(null),
+            estado: new FormControl(null),
+            genero: new FormControl(null),
+            telefono: new FormControl(null)
         });
     }
 
@@ -56,6 +57,7 @@ export class RegistrarClienteComponent implements OnInit {
 
     private buildForm(cliente: Cliente): void {
         this.registroForm = this.formBuilder.group({
+            idPersona: [cliente ? cliente.idPersona : null,],
             contrasena: [cliente ? cliente.contrasena : '', [Validators.required]],
             identificacion: [cliente ? cliente.identificacion : '', [Validators.required]],
             nombre: [cliente ? cliente.nombre : '', [Validators.required]],
@@ -70,7 +72,7 @@ export class RegistrarClienteComponent implements OnInit {
     submitRegistro(): void {
         if (this.registroForm.valid) {
             const formData: Cliente = this.registroForm.value;
-            this.id === 0 ? formData.idPersona = null : formData.idPersona = this.id;
+           // this.id === 0 ? formData.idPersona = null : formData.idPersona = this.id;
             const action = this.id === 0 ? 'creado' : 'modificado';
 
             const serviceMethod = this.id === 0 ? this.clientesService.create(formData) : this.clientesService.modificar(formData);
@@ -80,6 +82,8 @@ export class RegistrarClienteComponent implements OnInit {
                 this.mensajesService.tipoMensaje.next({tipo:'exito', mensaje:'Cliente guardado correctamente!!'});
                 this.cleanForm();
             });
+        } else {
+            this.mensajesService.tipoMensaje.next({tipo:'error', mensaje:'Datos incompletos!!'});
         }
     }
 
