@@ -27,7 +27,8 @@ export class MensajesComponent implements OnInit {
             }
             setTimeout(() => {
                 this.exito = false;
-            }, 2000);
+                this.error = false;
+            }, 3000);
         });
 
     }

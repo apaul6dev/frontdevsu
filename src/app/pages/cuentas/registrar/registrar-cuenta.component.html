@@ -1,4 +1,4 @@
-<app-mensajes ></app-mensajes>
+<app-mensajes></app-mensajes>
 <div class="registro-container">
     <h2>{{accion}}</h2>
 
@@ -7,9 +7,13 @@
         <div class="form-group">
             <label for="idPersona">Seleccione el Cliente:</label>
             <select id="idPersona" formControlName="idPersona">
-                <option *ngFor="let dato of listaClientes" [value]="dato.idPersona">{{ dato.identificacion }} / {{ dato.nombre }}</option>
+                <option *ngFor="let dato of listaClientes" [value]="dato.idPersona">
+                    {{ dato.identificacion }} / {{dato.nombre }}
+                </option>
             </select>
-            <span class="error-message" *ngIf="registroForm.controls.tipoCuenta.errors?.required">Valor obligatorio</span>
+            <span class="error-message" *ngIf="registroForm.controls.tipoCuenta.errors?.required">
+                Valor obligatorio
+            </span>
         </div>
 
         <div class="form-group">
@@ -31,9 +35,18 @@
         <div class="form-group">
             <label for="saldoInicial">Saldo Inicial:</label>
             <input type="text" id="saldoInicial" formControlName="saldoInicial" name="datoSeleccionado">
-            <span class="error-message" *ngIf="registroForm.controls.saldoInicial.errors?.required">Valor
-                obligatorio</span>
+            <span class="error-message" *ngIf="registroForm.controls.saldoInicial.errors?.required">
+                Valor obligatorio
+            </span>
         </div>
+
+        <div class="form-group">
+            <label for="estado">Seleccione el Estado:</label>
+            <select id="estado" formControlName="estado">
+              <option *ngFor="let dato of tiposEstado" [value]="dato">{{ dato }}</option>
+            </select>
+            <span class="error-message" *ngIf="registroForm.controls.estado.errors?.required">Valor obligatorio</span>
+          </div>
 
         <button type="submit">Guardar</button>
         <a class="blue-button" routerLink="/cuentas">Atrás</a>

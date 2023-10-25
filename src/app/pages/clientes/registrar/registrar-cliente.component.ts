@@ -21,8 +21,7 @@ export class RegistrarClienteComponent implements OnInit {
     tiposEstado: string[] = ['True', 'False'];
 
     constructor(private clientesService: ClientesService, private formBuilder: FormBuilder, private route: ActivatedRoute,
-        private mensajesService: MensajesService
-        ) {
+        private mensajesService: MensajesService) {
         this.registroForm = this.formBuilder.group({
             contrasena: new FormControl(''),
             identificacion: new FormControl(''),

@@ -2,7 +2,7 @@ import { Cliente } from "./cliente";
 
 export class Cuenta {
 
-    idCuenta: number;
+    idCuenta: number | null;
     numeroCuenta: string;
     tipoCuenta: string;
     saldoInicial: number;

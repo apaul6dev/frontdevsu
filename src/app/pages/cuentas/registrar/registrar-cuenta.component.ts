@@ -5,6 +5,7 @@ import { Cliente } from '../../model/cliente';
 import { CuentasService } from '../cuentas.service';
 import { ClientesService } from '../../clientes/clientes.service';
 import { Cuenta } from '../../model/cuenta';
+import { MensajesService } from '../../mensajes/mensajes.service';
 
 @Component({
     selector: 'app-registrar-cuenta',
@@ -14,17 +15,20 @@ import { Cuenta } from '../../model/cuenta';
 export class RegistrarCuentaComponent implements OnInit {
 
     registroForm: FormGroup | any;
-    // estadoGuardado = false;
+
     accion = "";
 
     tiposCuenta: string[] = ['Ahorro', 'Corriente'];
+    tiposEstado: string[] = ['True', 'False'];
 
     listaClientes: Cliente[] = [];
 
     id = 0;
 
-    constructor(private route: ActivatedRoute, private cuentasService: CuentasService, private clientesService: ClientesService, private formBuilder: FormBuilder) {
+    constructor(private route: ActivatedRoute, private cuentasService: CuentasService, private mensajesService: MensajesService,
+        private clientesService: ClientesService, private formBuilder: FormBuilder) {
         this.registroForm = this.formBuilder.group({
+            idCuenta: new FormControl(null),
             numeroCuenta: new FormControl(''),
             tipoCuenta: new FormControl(''),
             saldoInicial: new FormControl(''),
@@ -58,24 +62,38 @@ export class RegistrarCuentaComponent implements OnInit {
     }
 
     private buildForm(cuenta: Cuenta): void {
-        
         this.registroForm = this.formBuilder.group({
+            idCuenta: [cuenta ? cuenta.idCuenta : null],
             numeroCuenta: [cuenta ? cuenta.numeroCuenta : '', [Validators.required]],
             tipoCuenta: [cuenta ? cuenta.tipoCuenta : '', [Validators.required]],
             saldoInicial: [cuenta ? cuenta.saldoInicial : '', [Validators.required]],
             estado: [cuenta ? cuenta.estado : '', [Validators.required]],
             idPersona: [cuenta ? cuenta.cliente.idPersona : '', [Validators.required]],
-
-        }); 
-
+        });
     }
 
 
     submitRegistro() {
-        console.log(this.registroForm.value);
-
         if (this.registroForm.valid) {
             const formData = this.registroForm.value;
+            const action = this.id === 0 ? 'creado' : 'modificado';
+            const cliente = new Cliente(+formData.idPersona, "", "", "", "", 0, "", "", "",);
+            const cuenta = new Cuenta(formData.idCuenta, formData.numeroCuenta,
+                formData.tipoCuenta, formData.saldoInicial, formData.estado, cliente);
+
+            const serviceMethod = this.id === 0 ? this.cuentasService.create(cuenta) : this.cuentasService.modificar(cuenta);
+
+            serviceMethod.subscribe(() => {
+                console.log(`${action}: `, formData);
+                this.mensajesService.tipoMensaje.next('exito');
+                this.cleanForm();
+            });
+        } else {
+            this.mensajesService.tipoMensaje.next('error');
         }
+    }
+
+    cleanForm(): void {
+        this.registroForm.reset();
     }
 }
