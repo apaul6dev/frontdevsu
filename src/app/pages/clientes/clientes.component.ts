@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientesService } from './clientes.service';
-import { Subject } from 'rxjs';
 
 @Component({
     selector: 'app-clientes',
@@ -16,10 +15,11 @@ export class ClientesComponent implements OnInit {
     constructor(private clientesService: ClientesService) { }
 
     ngOnInit(): void {
-        this.getAllClientes();
-    }
+        this.clientesService.datosCambio.subscribe(rs => {
+            this.datos = rs;
+            this.datosTodo = rs;
+        });
 
-    getAllClientes() {
         this.clientesService.getAll().subscribe(rs => {
             this.datos = rs;
             this.datosTodo = rs;
@@ -38,6 +38,18 @@ export class ClientesComponent implements OnInit {
 
     resetearTabla() {
         this.datos = this.datosTodo
+    }
+
+    eliminar(idCliente: any) {
+        this.clientesService.eliminar(idCliente).subscribe(data => {
+            this.clientesService.getAll().subscribe(data2 => {
+                this.clientesService.datosCambio.next(data2);
+            });
+        });
+    }
+
+    modificar(idCliente: any) {
+        console.log('modificar', idCliente);
     }
 
 }

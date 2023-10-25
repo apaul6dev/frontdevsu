@@ -8,7 +8,7 @@ import { RegistrarClienteComponent } from './pages/clientes/registrar/registrar-
 
 const routes: Routes = [
   { path: 'clientes', component: ClientesComponent },
-  { path: 'crearCliente', component: RegistrarClienteComponent },
+  { path: 'crearCliente/:id', component: RegistrarClienteComponent },
   
   { path: 'cuentas', component: CuentasComponent },
   { path: 'movimientos', component: MovimientosComponent },
