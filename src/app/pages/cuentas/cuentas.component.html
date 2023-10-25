@@ -1,1 +1,40 @@
-<div>Cuentas</div>
+<div class="tabla-container">
+    
+    <header>
+        <h2>Cuentas</h2>
+    </header>
+
+    <div class="search-bar">
+        <input type="text" [(ngModel)]="terminoBusqueda" placeholder="Buscar" (input)="buscarDatos()">
+        <a class="yellow-button" routerLink="/crearCuenta/0">Nuevo</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id Cuenta</th>
+                <th>Número de Cuenta</th>
+                <th>Tipo</th>
+                <th>Saldo Inicial</th>
+                <th>Estado</th>
+                <th>Cliente</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let dato of datos">
+                <td>{{ dato.idCuenta }}</td>
+                <td>{{ dato.numeroCuenta }}</td>
+                <td>{{ dato.tipoCuenta }}</td>
+                <td>{{ dato.saldoInicial }}</td>
+                <td>{{ dato.estado }}</td>
+                <td>{{ dato.cliente.nombre}}</td>
+                <td>
+                    <button (click)="eliminar(dato.idCuenta)">Eliminar</button>
+                    <button (click)="modificar(dato.idCuenta)">Modificar</button>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

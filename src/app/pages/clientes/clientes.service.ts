@@ -24,17 +24,17 @@ export class ClientesService {
         return this.http.get<Cliente[]>(`${this.url}`);
     }
 
-    create(cliente:Cliente) {
+    create(cliente: Cliente) {
         return this.http.post(this.url, cliente);
     }
 
-    eliminar(id:number){
+    eliminar(id: number) {
         return this.http.delete(`${this.url}/${id}`);
     }
 
     modificar(cliente: Cliente) {
         return this.http.put(this.url, cliente);
-      }
-   
+    }
+
 
 }

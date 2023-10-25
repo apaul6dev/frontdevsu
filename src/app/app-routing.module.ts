@@ -5,12 +5,15 @@ import { CuentasComponent } from './pages/cuentas/cuentas.component';
 import { MovimientosComponent } from './pages/movimientos/movimientos.component';
 import { ReportesComponent } from './pages/reportes/reportes.component';
 import { RegistrarClienteComponent } from './pages/clientes/registrar/registrar-cliente.component';
+import { RegistrarCuentaComponent } from './pages/cuentas/registrar/registrar-cuenta.component';
 
 const routes: Routes = [
   { path: 'clientes', component: ClientesComponent },
   { path: 'crearCliente/:id', component: RegistrarClienteComponent },
-  
+
   { path: 'cuentas', component: CuentasComponent },
+  { path: 'crearCuenta/:id', component: RegistrarCuentaComponent },
+
   { path: 'movimientos', component: MovimientosComponent },
   { path: 'reportes', component: ReportesComponent },
 ];

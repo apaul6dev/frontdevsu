@@ -37,11 +37,11 @@ export class RegistrarClienteComponent implements OnInit {
 
     private initForm(): void {
         if (this.id === 0) {
-            this.accion = "Registrar";
+            this.accion = "Registro de Cientes";
             let clienteTmp!: Cliente;
             this.buildForm(clienteTmp);
         } else {
-            this.accion = "Modificar";
+            this.accion = "Modificar Clientes";
             this.clientesService.getClienteById(this.id).subscribe((cliente: Cliente) => {
                 this.buildForm(cliente);
             });

@@ -10,10 +10,12 @@ import { ReportesComponent } from './pages/reportes/reportes.component';
 import { HttpClientModule } from '@angular/common/http';
 import { RegistrarClienteComponent } from './pages/clientes/registrar/registrar-cliente.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { RegistrarCuentaComponent } from './pages/cuentas/registrar/registrar-cuenta.component';
 
 @NgModule({
   declarations: [
-    AppComponent, ClientesComponent, CuentasComponent, MovimientosComponent, ReportesComponent, RegistrarClienteComponent
+    AppComponent, ClientesComponent, CuentasComponent, MovimientosComponent,
+    ReportesComponent, RegistrarClienteComponent, RegistrarCuentaComponent
   ],
   imports: [
     BrowserModule,

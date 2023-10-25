@@ -3,7 +3,7 @@
   <p>¡Éxito! Tu acción se ha completado con éxito.</p>
 </div>
 <div class="registro-container">
-  <h2>Registro de Clientes</h2>
+  <h2>{{accion}}</h2>
   <form [formGroup]="registroForm" (ngSubmit)="submitRegistro()">
     <div class="form-group">
       <label for="nombre">Nombre:</label>
@@ -46,7 +46,7 @@
       <input type="tel" id="telefono" formControlName="telefono">
       <span class="error-message" *ngIf="registroForm.controls.telefono.errors?.required">Valor obligatorio</span>
     </div>
-    <button type="submit">{{accion}}</button>
+    <button type="submit">Guardar</button>
     <a class="blue-button" routerLink="/clientes">Atrás</a>
   </form>
 
