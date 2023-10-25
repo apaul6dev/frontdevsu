@@ -32,6 +32,12 @@ export class ClientesComponent implements OnInit {
         if (this.terminoBusqueda) {
             this.datos = this.datos.filter((dato) =>
                 dato.nombre.toLowerCase().includes(this.terminoBusqueda.toLowerCase())
+                || dato.nombre.toLowerCase().includes(this.terminoBusqueda.toLowerCase())
+                || dato.identificacion.toLowerCase().includes(this.terminoBusqueda.toLowerCase())
+                || dato.direccion.toLowerCase().includes(this.terminoBusqueda.toLowerCase())
+                || dato.estado.toLowerCase().includes(this.terminoBusqueda.toLowerCase())
+                || dato.genero.toLowerCase().includes(this.terminoBusqueda.toLowerCase())
+                || dato.telefono.toLowerCase().includes(this.terminoBusqueda.toLowerCase())
             );
         } else {
             this.resetearTabla();

@@ -46,7 +46,7 @@
       <input type="tel" id="telefono" formControlName="telefono">
       <span class="error-message" *ngIf="registroForm.controls.telefono.errors?.required">Valor obligatorio</span>
     </div>
-    <button type="submit">Registrar</button>
+    <button type="submit">{{accion}}</button>
     <a class="blue-button" routerLink="/clientes">Atrás</a>
   </form>
 

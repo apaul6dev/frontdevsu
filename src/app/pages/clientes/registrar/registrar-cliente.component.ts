@@ -13,6 +13,7 @@ export class RegistrarClienteComponent implements OnInit {
     registroForm: FormGroup | any;
     estadoGuardado = false;
     id = 0;
+    accion = '';
 
     constructor(private clientesService: ClientesService, private formBuilder: FormBuilder, private route: ActivatedRoute) {
         this.registroForm = this.formBuilder.group({
@@ -36,9 +37,11 @@ export class RegistrarClienteComponent implements OnInit {
 
     private initForm(): void {
         if (this.id === 0) {
+            this.accion = "Registrar";
             let clienteTmp!: Cliente;
             this.buildForm(clienteTmp);
         } else {
+            this.accion = "Modificar";
             this.clientesService.getClienteById(this.id).subscribe((cliente: Cliente) => {
                 this.buildForm(cliente);
             });
