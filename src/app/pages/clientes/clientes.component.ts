@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ClientesService } from './clientes.service';
+import { Router } from '@angular/router';
+import { Cliente } from '../model/cliente';
 
 @Component({
     selector: 'app-clientes',
@@ -8,11 +10,11 @@ import { ClientesService } from './clientes.service';
 })
 export class ClientesComponent implements OnInit {
 
-    datos: any[] = [];
-    datosTodo: any[] = [];
+    datos: Cliente[] = [];
+    datosTodo: Cliente[] = [];
     terminoBusqueda: string = '';
 
-    constructor(private clientesService: ClientesService) { }
+    constructor(private clientesService: ClientesService, private router: Router) { }
 
     ngOnInit(): void {
         this.clientesService.datosCambio.subscribe(rs => {
@@ -20,7 +22,7 @@ export class ClientesComponent implements OnInit {
             this.datosTodo = rs;
         });
 
-        this.clientesService.getAll().subscribe(rs => {
+        this.clientesService.listar().subscribe(rs => {
             this.datos = rs;
             this.datosTodo = rs;
         });
@@ -42,14 +44,15 @@ export class ClientesComponent implements OnInit {
 
     eliminar(idCliente: any) {
         this.clientesService.eliminar(idCliente).subscribe(data => {
-            this.clientesService.getAll().subscribe(data2 => {
+            this.clientesService.listar().subscribe(data2 => {
                 this.clientesService.datosCambio.next(data2);
             });
         });
     }
 
     modificar(idCliente: any) {
-        console.log('modificar', idCliente);
+        this.router.navigate(['/crearCliente/', idCliente]);
     }
+
 
 }
