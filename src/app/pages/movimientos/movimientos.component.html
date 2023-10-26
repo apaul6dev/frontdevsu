@@ -1,1 +1,41 @@
-<div>Movimientos</div>
+<div class="tabla-container">
+
+    <header>
+        <h2>Movimientos</h2>
+    </header>
+
+    <div class="search-bar">
+        <input type="text" [(ngModel)]="terminoBusqueda" placeholder="Buscar" (input)="buscarDatos()">
+        <a class="yellow-button" routerLink="/crearMovimiento/{{id}}">Nuevo</a>
+    </div>
+
+    <table>
+        <thead>
+            <tr>
+                <th>Id Movimiento</th>
+                <th>Fecha</th>
+                <th>Cliente</th>
+                <th>Numero Cuenta</th>
+                <th>Tipo</th>
+                <th>Saldo Inicial</th>
+                <th>Estado</th>
+                <th>Movimiento</th>
+                <th>Saldo Disponible</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let dato of datos">
+                <td>{{ dato.idMovimiento }}</td>
+                <td>{{ dato.fecha | date:"dd/MM/yyyy"}}</td>
+                <td>{{ dato.cuenta.cliente.nombre }}</td>
+                <td>{{ dato.cuenta.numeroCuenta }}</td>
+                <td>{{ dato.cuenta.tipoCuenta }}</td>
+                <td>{{(dato.tipo!=='retiro'? dato.saldo-dato.valor:dato.saldo+dato.valor) | number : '1.2-2'}}</td>
+                <td>{{ dato.cuenta.estado}}</td>
+                <td>{{ (dato.tipo==='retiro'? -dato.valor:dato.valor) | number : '1.2-2'}}</td>
+                <td>{{ dato.saldo | number : '1.2-2'}}</td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>

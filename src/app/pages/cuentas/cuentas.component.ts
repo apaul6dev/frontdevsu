@@ -45,6 +45,10 @@ export class CuentasComponent implements OnInit {
     this.router.navigate(['/crearCuenta/', idCliente]);
   }
 
+  movimientos(idCuenta: any) {
+    this.router.navigate(['/movimientos/', idCuenta]);
+  }
+
   buscarDatos() {
     if (this.terminoBusqueda) {
       this.datos = this.datos.filter((dato) =>

@@ -1,5 +1,5 @@
 <div class="tabla-container">
-    
+
     <header>
         <h2>Cuentas</h2>
     </header>
@@ -26,12 +26,13 @@
                 <td>{{ dato.idCuenta }}</td>
                 <td>{{ dato.numeroCuenta }}</td>
                 <td>{{ dato.tipoCuenta }}</td>
-                <td>{{ dato.saldoInicial }}</td>
+                <td>{{ dato.saldoInicial | number : '1.2-2'}}</td>
                 <td>{{ dato.estado }}</td>
                 <td>{{ dato.cliente.nombre}}</td>
                 <td>
                     <button (click)="eliminar(dato.idCuenta)">Eliminar</button>
                     <button (click)="modificar(dato.idCuenta)">Modificar</button>
+                    <button (click)="movimientos(dato.idCuenta)">Ver Movimientos</button>
                 </td>
             </tr>
         </tbody>

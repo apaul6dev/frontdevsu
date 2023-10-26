@@ -6,6 +6,7 @@ import { MovimientosComponent } from './pages/movimientos/movimientos.component'
 import { ReportesComponent } from './pages/reportes/reportes.component';
 import { RegistrarClienteComponent } from './pages/clientes/registrar/registrar-cliente.component';
 import { RegistrarCuentaComponent } from './pages/cuentas/registrar/registrar-cuenta.component';
+import { CrearMovimientosComponent } from './pages/movimientos/registrar/registrar-movimiento.component';
 
 const routes: Routes = [
   { path: 'clientes', component: ClientesComponent },
@@ -14,7 +15,10 @@ const routes: Routes = [
   { path: 'cuentas', component: CuentasComponent },
   { path: 'crearCuenta/:id', component: RegistrarCuentaComponent },
 
-  { path: 'movimientos', component: MovimientosComponent },
+  { path: 'movimientos/:id', component: MovimientosComponent },
+  { path: 'crearMovimiento/:id', component: CrearMovimientosComponent },
+
+  
   { path: 'reportes', component: ReportesComponent },
 ];
 

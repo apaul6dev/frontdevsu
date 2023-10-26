@@ -8,9 +8,19 @@ import { HOST } from "../shared/constants";
 })
 export class MovimientosService {
 
-    url = `${HOST}`;
+    url = `${HOST}/movimientos`;
 
-    constructor(private http: HttpClient) { }
+    constructor(private http: HttpClient) {
+
+    }
+
+    getMovimientosByCuenta(id: number) {
+        return this.http.get<any[]>(`${this.url}/getAllByCuenta/${id}`);
+    }
+
+    create(movimiento: any) {
+        return this.http.post(this.url, movimiento);
+    }
 
 
 }

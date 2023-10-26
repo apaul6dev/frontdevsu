@@ -24,7 +24,11 @@ export class ServerErrorsInterceptor implements HttpInterceptor {
                 }
             })).pipe(catchError((err) => {
                 console.error(err);
-                this.mensajesService.tipoMensaje.next({tipo:'error', mensaje:'Error con el servidor!!'});
+                if (err.error.message) {
+                    this.mensajesService.tipoMensaje.next({ tipo: 'error', mensaje: err.error.message });
+                } else {
+                    this.mensajesService.tipoMensaje.next({ tipo: 'error', mensaje: err.message });
+                }
                 return EMPTY;
             }));
     }

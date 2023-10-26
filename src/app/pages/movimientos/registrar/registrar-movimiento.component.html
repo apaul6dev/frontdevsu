@@ -1,0 +1,25 @@
+<div class="registro-container">
+    <h2>Registro de Movimientos</h2>
+
+    <form [formGroup]="registroForm" (ngSubmit)="submitRegistro()">
+
+        <div class="form-group">
+            <label for="tipo">Seleccione el tipo de movimiento:</label>
+            <select id="tipo" formControlName="tipo">
+                <option *ngFor="let dato of tiposMovimiento" [value]="dato">{{ dato }}</option>
+            </select>
+            <span class="error-message" *ngIf="registroForm.controls.tipo.errors?.required">Valor obligatorio</span>
+        </div>
+
+        <div class="form-group">
+            <label for="valor">Valor:</label>
+            <input type="number" id="valor" formControlName="valor" name="valor">
+            <span class="error-message" *ngIf="registroForm.controls.valor.errors?.required">
+                Valor obligatorio
+            </span>
+        </div>
+        <button type="submit">Guardar</button>
+        <a class="blue-button" routerLink="/movimientos/{{id}}">Atrás</a>
+    </form>
+
+</div>

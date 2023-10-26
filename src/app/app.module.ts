@@ -14,12 +14,13 @@ import { RegistrarCuentaComponent } from './pages/cuentas/registrar/registrar-cu
 import { MensajesComponent } from './pages/mensajes/mensajes.component';
 import { ServerErrorsInterceptor } from './pages/shared/server-errors.interceptor';
 import { NotifierModule } from 'angular-notifier';
+import { CrearMovimientosComponent } from './pages/movimientos/registrar/registrar-movimiento.component';
 
 @NgModule({
   declarations: [
     AppComponent, ClientesComponent, CuentasComponent, MovimientosComponent,
     ReportesComponent, RegistrarClienteComponent, RegistrarCuentaComponent,
-    MensajesComponent
+    MensajesComponent, CrearMovimientosComponent
   ],
   imports: [
     BrowserModule,
