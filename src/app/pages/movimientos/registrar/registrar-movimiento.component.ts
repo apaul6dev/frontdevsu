@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MovimientosService } from '../movimientos.service';
-import { FormBuilder, FormControl, FormGroup } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MensajesService } from '../../mensajes/mensajes.service';
 import { ActivatedRoute, Params } from '@angular/router';
 
@@ -10,16 +10,21 @@ import { ActivatedRoute, Params } from '@angular/router';
     styleUrls: ['./registrar-movimiento.component.scss']
 })
 export class CrearMovimientosComponent implements OnInit {
-
+    
+    id = 0;
     registroForm: FormGroup | any;
     tiposMovimiento: string[] = ['deposito', 'retiro'];
-    id = 0;
-    constructor(private route: ActivatedRoute, private mensajesService: MensajesService,
-        private movimientosService: MovimientosService, private formBuilder: FormBuilder) {
+    
+    constructor(
+        private route: ActivatedRoute,
+        private mensajesService: MensajesService,
+        private movimientosService: MovimientosService,
+        private formBuilder: FormBuilder
+    ) {
         this.registroForm = this.formBuilder.group({
-            idMovimiento: new FormControl(null),
-            tipo: new FormControl(0),
-            valor: new FormControl(0),
+            idMovimiento: [null],
+            tipo: [null, Validators.required],
+            valor: [null, [Validators.required, Validators.min(0.01)]],
         });
     }
 
@@ -32,22 +37,18 @@ export class CrearMovimientosComponent implements OnInit {
     submitRegistro() {
         if (this.registroForm.valid) {
             const formData = this.registroForm.value;
-
-            let movimiento = {
+            const movimiento = {
                 valor: +formData.valor,
                 tipo: formData.tipo,
-                cuenta: {
-                    idCuenta: this.id
-                }
-            }
-            console.log(movimiento);
-            
+                cuenta: { idCuenta: this.id }
+            };
+
             this.movimientosService.create(movimiento).subscribe(() => {
-                this.mensajesService.tipoMensaje.next({ tipo: 'exito', mensaje: 'Movimiento guardado correctamente!!' });
+                this.showSuccessMessage('Movimiento guardado correctamente!!');
                 this.cleanForm();
             });
         } else {
-            this.mensajesService.tipoMensaje.next({ tipo: 'error', mensaje: 'Datos incompletos!!' });
+            this.showErrorMessage('Datos incompletos!!');
         }
     }
 
@@ -55,4 +56,11 @@ export class CrearMovimientosComponent implements OnInit {
         this.registroForm.reset();
     }
 
+    private showSuccessMessage(message: string) {
+        this.mensajesService.tipoMensaje.next({ tipo: 'exito', mensaje: message });
+    }
+
+    private showErrorMessage(message: string) {
+        this.mensajesService.tipoMensaje.next({ tipo: 'error', mensaje: message });
+    }
 }

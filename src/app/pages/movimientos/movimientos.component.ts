@@ -14,39 +14,49 @@ export class MovimientosComponent implements OnInit {
   datosTodo: any[] = [];
   terminoBusqueda: string = '';
 
-  constructor(private route: ActivatedRoute, private mensajesService: MensajesService,
-    private movimientosService: MovimientosService) { }
+  constructor(
+    private route: ActivatedRoute,
+    private mensajesService: MensajesService,
+    private movimientosService: MovimientosService
+  ) {}
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
       this.id = +params['id'];
-      this.movimientosService.getMovimientosByCuenta(this.id).subscribe(rs => {
-        if (rs.length > 0) {
-          this.mensajesService.tipoMensaje.next({ tipo: "exito", mensaje: 'Movimientos recuperados correctamente!!' });
-          console.log(rs);
-          this.datos = rs;
-          this.datosTodo = rs;
-        } else {
-          this.mensajesService.tipoMensaje.next({ tipo: "exito", mensaje: 'No hay movimientos para mostrar' });
-        }
-      });
+      this.loadData();
+    });
+  }
+
+  private loadData() {
+    if (this.id === 0) {
+      this.showWarningMessage('Debe seleccionar una cuenta en la pantalla de Cuentas');
+      return;
+    }
+
+    this.movimientosService.getMovimientosByCuenta(this.id).subscribe(rs => {
+      if (rs.length > 0) {
+        this.mensajesService.tipoMensaje.next({ tipo: 'exito', mensaje: 'Movimientos recuperados correctamente!!' });
+        this.datos = rs;
+        this.datosTodo = rs;
+      } else {
+        this.showWarningMessage('No hay movimientos para mostrar');
+      }
     });
   }
 
   buscarDatos() {
     if (this.terminoBusqueda) {
-      this.datos = this.datos.filter((dato) =>
-        dato.tipo.toString().includes(this.terminoBusqueda)
-        // || dato.tipoCuenta.toLowerCase().includes(this.terminoBusqueda.toLowerCase())
-        //|| dato.estado.toLowerCase().includes(this.terminoBusqueda.toLowerCase())
-        //|| dato.cliente.nombre.toLowerCase().includes(this.terminoBusqueda.toLowerCase())
-      );
+      this.datos = this.datosTodo.filter(dato => dato.tipo.toString().includes(this.terminoBusqueda));
     } else {
       this.resetearTabla();
     }
   }
+
   resetearTabla() {
-    this.datos = this.datosTodo
+    this.datos = this.datosTodo;
   }
 
+  private showWarningMessage(message: string) {
+    this.mensajesService.tipoMensaje.next({ tipo: 'warning', mensaje: message });
+  }
 }

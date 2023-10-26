@@ -17,6 +17,9 @@
             <span class="error-message" *ngIf="registroForm.controls.valor.errors?.required">
                 Valor obligatorio
             </span>
+            <span class="error-message" *ngIf="registroForm.controls.valor.errors?.min">
+               El valor debe ser mayor a 0.01
+            </span>
         </div>
         <button type="submit">Guardar</button>
         <a class="blue-button" routerLink="/movimientos/{{id}}">Atrás</a>

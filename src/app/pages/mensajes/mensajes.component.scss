@@ -20,9 +20,20 @@
     border: 1px solid #ddd; /* Borde opcional */
     margin-bottom: 10px; /* Espacio entre mensajes */
   }
+
+  .warning-message {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background-color: rgb(185, 111, 0); /* Color de fondo opcional */
+    color: #f0f0f0;
+    padding: 10px;
+    border: 1px solid #ddd; /* Borde opcional */
+    margin-bottom: 10px; /* Espacio entre mensajes */
+  }
   
   /* Estilo para el mensaje */
-  .success-message p, .error-message p {
+  .success-message p, .error-message p, .warning-message p {
     flex: 1; /* El mensaje ocupa el espacio restante */
     margin: 0; /* Elimina el margen del párrafo */
     font-size: 16px;
