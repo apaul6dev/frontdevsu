@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { MensajesService } from '../mensajes/mensajes.service';
 import { ActivatedRoute, Params } from '@angular/router';
 import { MovimientosService } from './movimientos.service';
+import jsPDF from 'jspdf';
+
 
 @Component({
   selector: 'app-movimientos',
@@ -18,7 +20,7 @@ export class MovimientosComponent implements OnInit {
     private route: ActivatedRoute,
     private mensajesService: MensajesService,
     private movimientosService: MovimientosService
-  ) {}
+  ) { }
 
   ngOnInit(): void {
     this.route.params.subscribe((params: Params) => {
@@ -59,4 +61,48 @@ export class MovimientosComponent implements OnInit {
   private showWarningMessage(message: string) {
     this.mensajesService.tipoMensaje.next({ tipo: 'warning', mensaje: message });
   }
+
+
+  generatePDF() {
+
+    const header = [
+      "Id Movimient",
+      "Fecha",
+      "Cliente",
+      "Numero Cuenta",
+      "Tipo",
+      "Saldo Inicial",
+      "Estado",
+      "Movimiento",
+      "Saldo Disponible",
+    ]
+
+
+    let datosReporte: any = [];
+
+    this.datosTodo.forEach(dato => {
+      datosReporte.push(
+        {
+          "Id Movimient": `${dato.idMovimiento}`,
+          "Fecha": dato.fecha,
+          "Cliente": dato.cuenta.cliente.nombre,
+          "Numero Cuenta": `${dato.cuenta.numeroCuenta}`,
+          "Tipo": dato.cuenta.tipoCuenta,
+          "Saldo Inicial": dato.tipo !== 'retiro' ? `${dato.saldo - dato.valor}` : `${dato.saldo + dato.valor}`,
+          "Estado": dato.cuenta.estado,
+          "Movimiento": dato.tipo === 'retiro' ? `${-dato.valor}` : `${dato.valor}`,
+          "Saldo Disponible": `${dato.saldo}`
+        }
+      );
+    });
+
+    console.log(datosReporte);
+    
+    const doc = new jsPDF({ putOnlyUsedFonts: true, orientation: 'landscape' });
+    doc.table(1, 1, datosReporte, header, { autoSize: true });
+
+    // Guardar el PDF con un nombre de archivo
+    doc.save('nombre-del-archivo.pdf');
+  }
+
 }

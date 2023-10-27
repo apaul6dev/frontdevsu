@@ -5,7 +5,9 @@
     </header>
 
     <div class="search-bar">
+    
         <input type="text" [(ngModel)]="terminoBusqueda" placeholder="Buscar" (input)="buscarDatos()">
+        <button (click)="generatePDF()">Generar Reporte</button>
         <a class="yellow-button" routerLink="/crearMovimiento/{{id}}">Nuevo</a>
     </div>
 
