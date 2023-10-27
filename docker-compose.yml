@@ -1,0 +1,21 @@
+version: "3.8"
+
+services:
+  angular-services:
+    container_name: angular-container
+    build: ./  # Puede ser necesario especificar la ubicación de tu Dockerfile si no se encuentra en la raíz del proyecto
+    volumes:
+      - './:/usr/src/app'
+    ports:
+      - "4202:4200"
+    command: >
+      bash -c "npm start"
+      
+  docker-nginx:
+    container_name: docker-nginx
+    build: ./  # Puede ser necesario especificar la ubicación de tu Dockerfile si no se encuentra en la raíz del proyecto
+    ports:
+      - "90:80"
+    command: nginx -g 'daemon off;'
+    depends_on:
+      - angular-services  # Corregido el nombre de servicio dependiente

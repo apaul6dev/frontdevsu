@@ -13,7 +13,6 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RegistrarCuentaComponent } from './pages/cuentas/registrar/registrar-cuenta.component';
 import { MensajesComponent } from './pages/mensajes/mensajes.component';
 import { ServerErrorsInterceptor } from './pages/shared/server-errors.interceptor';
-import { NotifierModule } from 'angular-notifier';
 import { CrearMovimientosComponent } from './pages/movimientos/registrar/registrar-movimiento.component';
 
 @NgModule({
