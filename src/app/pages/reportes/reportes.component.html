@@ -4,12 +4,37 @@
     </header>
 
     <form [formGroup]="reportForm">
+
         <div class="form-group">
-            <label for="fechaInicio">Fecha de Inicio</label>
+            <label for="idPersona">Seleccione el Cliente:</label>
+            <select id="idPersona" formControlName="idPersona" (change)="clientesSeleccionado()">
+                <option *ngFor="let dato of listaClientes" [value]="dato.idPersona">
+                    {{ dato.identificacion }} / {{dato.nombre }}
+                </option>
+            </select>
+            <span class="error-message" *ngIf="reportForm.controls.idPersona.errors?.required">
+                Valor obligatorio
+            </span>
+        </div>
+
+        <div class="form-group">
+            <label for="idCuenta">Seleccione una Cuenta:</label>
+            <select id="idCuenta" formControlName="idCuenta" (change)="clientesSeleccionado()">
+                <option *ngFor="let dato of listaCuentas" [value]="dato.numeroCuenta">
+                    {{ dato.tipoCuenta }} / {{dato.numeroCuenta }} / {{dato.estado}}
+                </option>
+            </select>
+            <span class="error-message" *ngIf="reportForm.controls.idCuenta.errors?.required">
+                Valor obligatorio
+            </span>
+        </div>
+
+        <div class="form-group">
+            <label for="fechaInicio">Fecha de Inicio:</label>
             <input type="date" id="fechaInicio" formControlName="fechaInicio">
         </div>
         <div class="form-group">
-            <label for="fechaFin">Fecha de Fin</label>
+            <label for="fechaFin">Fecha de Fin:</label>
             <input type="date" id="fechaFin" formControlName="fechaFin">
 
             <span class="error-message" *ngIf="reportForm.invalid">

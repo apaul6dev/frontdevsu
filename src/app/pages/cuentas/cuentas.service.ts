@@ -35,4 +35,8 @@ export class CuentasService {
         return this.http.put(this.url, cliente);
     }
 
+    getCuentasByCliente(id: number) {
+        return this.http.get<Cuenta[]>(`${this.url}/getCuentasByCliente/${id}`);
+    }
+
 }

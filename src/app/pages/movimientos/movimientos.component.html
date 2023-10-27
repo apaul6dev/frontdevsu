@@ -7,7 +7,6 @@
     <div class="search-bar">
     
         <input type="text" [(ngModel)]="terminoBusqueda" placeholder="Buscar" (input)="buscarDatos()">
-        <button (click)="generatePDF()">Generar Reporte</button>
         <a class="yellow-button" routerLink="/crearMovimiento/{{id}}">Nuevo</a>
     </div>
 
@@ -38,6 +37,9 @@
                 <td>{{ dato.saldo | number : '1.2-2'}}</td>
             </tr>
         </tbody>
+        <tfoot>
+            <button (click)="generatePDF()" [disabled]="datos.length==0">Generar Reporte</button>
+        </tfoot>
     </table>
 
 </div>

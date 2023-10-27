@@ -10,14 +10,14 @@
                     {{ dato.identificacion }} / {{dato.nombre }}
                 </option>
             </select>
-            <span class="error-message" *ngIf="registroForm.controls.tipoCuenta.errors?.required">
+            <span class="error-message" *ngIf="registroForm.controls.idPersona.errors?.required">
                 Valor obligatorio
             </span>
         </div>
 
         <div class="form-group">
             <label for="numeroCuenta">Número Cuenta:</label>
-            <input type="text" id="numeroCuenta" formControlName="numeroCuenta">
+            <input type="number" id="numeroCuenta" formControlName="numeroCuenta">
             <span class="error-message" *ngIf="registroForm.controls.numeroCuenta.errors?.required">
                 Valor obligatorio
             </span>

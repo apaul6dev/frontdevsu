@@ -64,7 +64,6 @@ export class MovimientosComponent implements OnInit {
 
 
   generatePDF() {
-
     const header = [
       "Id Movimient",
       "Fecha",
@@ -101,8 +100,7 @@ export class MovimientosComponent implements OnInit {
     const doc = new jsPDF({ putOnlyUsedFonts: true, orientation: 'landscape' });
     doc.table(1, 1, datosReporte, header, { autoSize: true });
 
-    // Guardar el PDF con un nombre de archivo
-    doc.save('nombre-del-archivo.pdf');
+    doc.save('estadoCueta.pdf');
   }
 
 }

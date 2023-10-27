@@ -29,7 +29,7 @@ export class RegistrarCuentaComponent implements OnInit {
         private clientesService: ClientesService, private formBuilder: FormBuilder) {
         this.registroForm = this.formBuilder.group({
             idCuenta: new FormControl(null),
-            numeroCuenta: new FormControl(''),
+            numeroCuenta: new FormControl('',[Validators.min(1), Validators.max(999999)]),
             tipoCuenta: new FormControl(''),
             saldoInicial: new FormControl(''),
             estado: new FormControl(''),

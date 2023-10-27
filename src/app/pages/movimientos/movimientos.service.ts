@@ -22,12 +22,12 @@ export class MovimientosService {
         return this.http.post(this.url, movimiento);
     }
 
-    generateJSONReport(finicio:string, ffinal:string) {
-        return this.http.get<any[]>(`${this.url}/generateJSONReport?finicial=${finicio}&ffinal=${ffinal}`);
+    generateJSONReport(finicio: string, ffinal: string, idCuenta: number) {
+        return this.http.get<any[]>(`${this.url}/generateJSONReport?finicial=${finicio}&ffinal=${ffinal}&idCuenta=${idCuenta}`);
     }
-    generatePDFReport(finicio:string, ffinal:string) {
-        return this.http.get<any[]>(`${this.url}/generatePDFReport?finicial=${finicio}&ffinal=${ffinal}`);
+    generatePDFReport(finicio: string, ffinal: string, idCuenta: number) {
+        return this.http.get<any>(`${this.url}/generatePDFReport?finicial=${finicio}&ffinal=${ffinal}&idCuenta=${idCuenta}`);
     }
 
-    
+
 }

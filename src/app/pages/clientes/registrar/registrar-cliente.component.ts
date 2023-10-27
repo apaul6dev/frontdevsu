@@ -28,7 +28,7 @@ export class RegistrarClienteComponent implements OnInit {
             identificacion: new FormControl(null),
             nombre: new FormControl(null),
             direccion: new FormControl(null),
-            edad: new FormControl(null),
+            edad: new FormControl(null,[Validators.min(1), Validators.max(150)]),
             estado: new FormControl(null),
             genero: new FormControl(null),
             telefono: new FormControl(null)
