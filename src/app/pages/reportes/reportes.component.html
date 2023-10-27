@@ -1,1 +1,23 @@
-<div>Reportes</div>
+<div class="registro-container">
+    <header>
+        <h2>Generar Reporte de estado de Cuentas</h2>
+    </header>
+
+    <form [formGroup]="reportForm">
+        <div class="form-group">
+            <label for="fechaInicio">Fecha de Inicio</label>
+            <input type="date" id="fechaInicio" formControlName="fechaInicio">
+        </div>
+        <div class="form-group">
+            <label for="fechaFin">Fecha de Fin</label>
+            <input type="date" id="fechaFin" formControlName="fechaFin">
+
+            <span class="error-message" *ngIf="reportForm.invalid">
+                Fechas Incorrectas
+            </span>
+        </div>
+        <div class="form-group">
+            <button (click)="downloadReport()" [disabled]="reportForm.invalid">Descargar Reporte</button>
+        </div>
+    </form>
+</div>

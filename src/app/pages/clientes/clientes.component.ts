@@ -21,7 +21,6 @@ export class ClientesComponent implements OnInit {
         this.clientesService.datosCambio.subscribe(rs => {
             this.datos = rs;
             this.datosTodo = rs;
-            this.mensajesService.tipoMensaje.next('exito');
         });
 
         this.clientesService.listar().subscribe(rs => {
